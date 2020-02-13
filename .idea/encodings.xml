@@ -3,5 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/plain-text-files/Saved for later.txt" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/plain_text_files/a.txt" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/plain_text_files/valid.txt" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/plain_text_files/valid_multiple_tags.txt" charset="windows-1252" />
   </component>
 </project>

@@ -17,7 +17,7 @@ class Note:
         with open(json_file, encoding="utf-8") as f:
             self.data = json.load(f)
 
-        self.txt_note = open(json_file.name.replace(".json", ".txt"), "w+")
+        self.txt_note = open(json_file.name.replace(".json", ".txt"), "w+", encoding="utf-8")
 
     def make_note(self):
         """Creates a new plain text note from a json file"""
@@ -39,11 +39,12 @@ class Note:
                 self.txt_note.write(self.data["title"] + "\n\n")
 
     def _write_footer(self):
-        """Write footer  into new note file"""
+        """Write footer into new note file"""
         if "labels" in self.data:
-            self.txt_note.write("\n\n Tags (from Google Keep):\n\t")
+            self.txt_note.write("\n\nTags (from Google Keep):\n\t")
             for label in self.data["labels"]:
-                self.txt_note.write(label["name"] + ",")
+                if label["name"] != "":
+                    self.txt_note.write(label["name"] + ",")
 
     def _write_contents(self):
         """Write contents from data file into new note file"""
