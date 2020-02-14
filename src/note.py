@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import json
 
 # Owned
@@ -19,7 +17,7 @@ class Note:
             with open(json_file, encoding="utf-8") as f:
                 self.data = json.load(f)
         except json.JSONDecodeError:
-            print("--> INVALID JSON - FILE: <{}>".format(json_file.name))
+            print("INVALID JSON: <{}>".format(json_file.name))
 
         self.txt_note = open(json_file.name.replace(".json", ".txt"), "w+", encoding="utf-8")
 
@@ -30,9 +28,9 @@ class Note:
         # write the contents of the note
         self._write_contents()
         # write footer
-        self._write_footer()
+        self._write_tags()
 
-        return self.txt_note
+        # return self.txt_note
 
     """Helper methods to new_note defined below"""
 
@@ -42,13 +40,13 @@ class Note:
             if self.data["title"] != "":
                 self.txt_note.write(self.data["title"] + "\n\n")
 
-    def _write_footer(self):
-        """Write footer into new note file"""
+    def _write_tags(self):
+        """Write tags into new note file"""
         if "labels" in self.data:
             self.txt_note.write("\n\nTags (from Google Keep):\n\t")
             for label in self.data["labels"]:
                 if label["name"] != "":
-                    self.txt_note.write(label["name"] + ",")
+                    self.txt_note.write(label["name"] + " ")
 
     def _write_contents(self):
         """Write contents from data file into new note file"""
