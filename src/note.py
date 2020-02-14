@@ -13,9 +13,13 @@ class Note:
         with methods to export as plain-text .txt files"""
 
     def __init__(self, json_file):
-        """Constructs a new Note object"""
-        with open(json_file, encoding="utf-8") as f:
-            self.data = json.load(f)
+        """Constructs a new Note object
+            :return None if json_file passed in was invalid"""
+        try:
+            with open(json_file, encoding="utf-8") as f:
+                self.data = json.load(f)
+        except json.JSONDecodeError:
+            print("--> INVALID JSON - FILE: <{}>".format(json_file.name))
 
         self.txt_note = open(json_file.name.replace(".json", ".txt"), "w+", encoding="utf-8")
 

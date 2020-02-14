@@ -18,7 +18,7 @@ def open_json_directory(path):
 
     file_count = 0
     json_count = 0
-    notes_count = 0
+    success_count = 0
 
     # open the directory and loop through files
     for file in os.scandir(path):
@@ -30,8 +30,11 @@ def open_json_directory(path):
             print("IMPORTING: {}".format(file.name))
             # new Note object
             n = note.Note(file)
-            # create a new txt file from it
-            n.make_note()
+            # check if object returned was loaded correctly (hasn't raised exceptions), so it has the "data" attribute
+            if hasattr(n, "data"):
+                success_count += 1
+                # create a new txt file from it
+                n.make_note()
 
     print("NUMBER OF FILES IN DIRECTORY {}: ".format(file_count))
     print("NUMBER OF JSON FILES IN DIRECTORY: {}".format(json_count))
@@ -41,7 +44,7 @@ def main():
     """Driver function"""
     # get directory with json files from user
     # direc = input("ENTER THE DIRECTORY WITH JSON FILES: ")
-    direc = "../data"
+    direc = "../data/test"
     # creates new directory to store new notes
     if not os.path.exists("../plain_text_files"):
         os.mkdir("../plain_text_files")
