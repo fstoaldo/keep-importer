@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
 import os
+
+import tkinter
+from tkinter import filedialog
+from ctypes import windll
+
 import src.note as note
 
 # Owned
@@ -53,23 +58,37 @@ def json_to_txt(json_file):
     return 0
 
 
+def select_dir():
+    """Directory selection popup window using tkinter"""
+
+    # display window correctly with high DPI
+    windll.shcore.SetProcessDpiAwareness(1)
+    # new instance of tkinter
+    window = tkinter.Tk()
+    # avoids window from popping up
+    window.withdraw()
+    # selects folder and returns it
+    return filedialog.askdirectory()
+
+
 def main():
     """Driver function"""
 
-    path = "../data"
+    path = select_dir()
 
     # creates new directory to store new notes
-    if not os.path.exists("../plain_text_files"):
-        os.mkdir("../plain_text_files")
-    os.chdir("../plain_text_files")
+    new_dir = path + "/plain_text_files"
+    if not os.path.exists(new_dir):
+        os.mkdir(new_dir)
+    os.chdir(new_dir)
 
     # call function to handle json files in the directory
     open_json_directory(path)
 
     # in the end, prompts user to open path with exported notes
-    ans = input("> Open folder with exported notes? [y/n] ")
+    ans = input("> Open folder with exported notes? [y/N] ")
     if ans.lower() == "y":
-        os.startfile(os.path.realpath(os.getcwd()))
+        os.startfile(os.path.realpath(new_dir))
 
 
 if __name__ == '__main__':
