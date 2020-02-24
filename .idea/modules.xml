@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/keep-importer.iml" filepath="$PROJECT_DIR$/.idea/keep-importer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/keep_exporter.iml" filepath="$PROJECT_DIR$/.idea/keep_exporter.iml" />
     </modules>
   </component>
 </project>

@@ -13,7 +13,7 @@ __author__ = "fstoaldo"
 __maintainer__ = "fstoaldo"
 __email__ = "fstoaldo@gmail.com"
 
-"""keep_importer.py: this script aims to read JSON files imported from Google Keep and transform them to
+"""keep_exporter.py: this script aims to read JSON files imported from Google Keep and transform them to
     plain-text format, to facilitate backup and make it easier to import to other note taking apps"""
 
 
